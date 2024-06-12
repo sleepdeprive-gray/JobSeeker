@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Job Posting</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="jobpost.css" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="row">
+        <div class="col-sm-2" style="background-color: #fff; height: 580px;">
+            <img src="logo1.png" alt="Logo1" class="logo1"/>
+            <span class="namelog">JobSeekers</span><br>
+
+            <div class="profile">
+                <img src="avatar.png" alt="Avatar">
+                <div class="profile-info">
+                    <div class="name">Admin Nicole</div>
+                    <div class="title">HR Officer</div>
+                </div>
+            </div>
+            <div class="sidebar">
+                <a class="nav-link" href="company.html"><i class="fa fa-home"><b style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Dashboard</b></i></a>
+                <a class="nav-link" href="applicants.html"><i class="fa fa-clipboard"><b style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Applicants</b></i></a>
+                <a class="nav-link active" href="jobpost.html"><i class="fa fa-briefcase"><b style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Job Posting</b></i></a>
+                <a class="nav-link" href="account.html"><i class="fa fa-user"><b style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Accounts</b></i></a>
+                <a class="nav-link" href="#logout"><i class="fa fa-sign-out"><b style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Logout</b></i></a>
+            </div>
+        </div>
+        <div class="col-sm-10" style="background-color: #fff; height: 580px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+            <div class="navbar">
+                <div class="dropdown">
+                    <button class="dropbtn" onclick="myFunction()">
+                        <i class="fa fa-angle-down"></i>
+                    </button>
+                    <div class="dropdown-content" id="myDropdown">
+                        <a href="#"><i class="fa fa-user"></i> Account</a>
+                        <a href="#"><i class="fa fa-envelope"></i> Message</a>
+                        <a href="#"><i class="fa fa-sign-out"></i> Logout</a>
+                    </div>
+                </div>
+            </div>
+                <p class="name1">ADMIN</p>
+                <img src="avatar.png" alt="Avatar" class="avatar"/>
+                <i class='fa fa-bell' style="float: right; margin-top: 12px; margin-right: 5px;"></i>
+                <input type="text" placeholder="Search" class="search">
+                <div class="container mt-5">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="d-flex">
+                                <div class="folder-tab active" data-target="#job-posting">Job Posting</div>
+                                <div class="folder-tab" data-target="#job-form">Job Form</div>
+                            </div>
+                            <div class="folder-content active" id="job-posting">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>ID No.</th>
+                                            <th>Job Title</th>
+                                            <th>Job Type</th>
+                                            <th>Company</th>
+                                            <th>Address</th>
+                                            <th>Job Post Date</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Software Engineer</td>
+                                            <td>Full-time</td>
+                                            <td>ABC Corp</td>
+                                            <td>123 Corporate Blvd, Business City</td>
+                                            <td>2023-05-20</td>
+                                            <td>
+                                                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#jobModal" onclick="viewJob('1', 'Software Engineer', 'Full-time', 'ABC Corp', '123 Corporate Blvd, Business City', '2023-05-20')">View</button>
+                                            </td>
+                                        </tr>
+                                        <!-- More rows as needed -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="folder-content" id="job-form">
+                                <h3>Job Form</h3>
+                                <form id="jobForm">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="jobTitle">Job Title</label>
+                                            <input type="text" class="form-control" id="jobTitle" required>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="jobType">Job Type</label>
+                                            <select class="form-control" id="jobType" required>
+                                                <option value="Full-time">Full-time</option>
+                                                <option value="Part-time">Part-time</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="company">Company</label>
+                                            <input type="text" class="form-control" id="company" required>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="address">Address</label>
+                                            <input type="text" class="form-control" id="address" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="jobPostDate">Job Post Date</label>
+                                            <input type="date" class="form-control" id="jobPostDate" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <button type="submit" class="btn btn-primary">Register</button>
+                                            <button type="button" class="btn btn-secondary" onclick="resetForm()">Cancel</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- Job Modal -->
+                <div class="modal fade" id="jobModal" tabindex="-1" aria-labelledby="jobModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="jobModalLabel">Job Details</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="jobUpdateForm">
+                                    <div class="form-group">
+                                        <label for="jobId">ID No.</label>
+                                        <input type="text" class="form-control" id="jobId" readonly>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="jobTitleDetail">Job Title</label>
+                                        <input type="text" class="form-control" id="jobTitleDetail">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="jobTypeDetail">Job Type</label>
+                                        <select class="form-control" id="jobTypeDetail">
+                                            <option value="Full-time">Full-time</option>
+                                            <option value="Part-time">Part-time</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="jobCompany">Company</label>
+                                        <input type="text" class="form-control" id="jobCompany">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="jobAddress">Address</label>
+                                        <input type="text" class="form-control" id="jobAddress">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="jobPostDateDetail">Job Post Date</label>
+                                        <input type="date" class="form-control" id="jobPostDateDetail">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-warning" onclick="updateJob()">Update</button>
+                                <button type="button" class="btn btn-danger" onclick="cancelJob()">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>            
+    <!-- Optional JavaScript -->
+    <script src="jobPost.js"></script>
+    <script src="jobUpdate.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

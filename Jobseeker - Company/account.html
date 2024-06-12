@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Account</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="account.css" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="row">
+        <div class="col-sm-2" style="background-color: #fff; height: 580px;">
+            <img src="logo1.png" alt="Logo1" class="logo1"/>
+            <span class="namelog">JobSeekers</span><br>
+
+            <div class="profile">
+                <img src="avatar.png" alt="Avatar">
+                <div class="profile-info">
+                    <div class="name">Admin Nicole</div>
+                    <div class="title">HR Officer</div>
+                </div>
+            </div>
+            <div class="sidebar">
+                <a class="nav-link" href="company.html"><i class="fa fa-home"><b style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Dashboard</b></i></a>
+                <a class="nav-link" href="applicants.html"><i class="fa fa-clipboard"><b style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Applicants</b></i></a>
+                <a class="nav-link" href="jobpost.html"><i class="fa fa-briefcase"><b style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Job Posting</b></i></a>
+                <a class="nav-link active" href="account.html"><i class="fa fa-user"><b style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Accounts</b></i></a>
+                <a class="nav-link" href="#logout"><i class="fa fa-sign-out"><b style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Logout</b></i></a>
+            </div>
+        </div>
+        <div class="col-sm-10" style="background-color: #fff; height: 580px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+            <div class="navbar">
+                <div class="dropdown">
+                    <button class="dropbtn" onclick="myFunction()">
+                        <i class="fa fa-angle-down"></i>
+                    </button>
+                    <div class="dropdown-content" id="myDropdown">
+                        <a href="#"><i class="fa fa-user"></i> Account</a>
+                        <a href="#"><i class="fa fa-envelope"></i> Message</a>
+                        <a href="#"><i class="fa fa-sign-out"></i> Logout</a>
+                    </div>
+                </div>
+            </div>
+                <p class="name1">ADMIN</p>
+                <img src="avatar.png" alt="Avatar" class="avatar"/>
+                <i class='fa fa-bell' style="float: right; margin-top: 12px; margin-right: 5px;"></i>
+                <input type="text" placeholder="Search" class="search">
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" id="myTab" role="tablist" style="margin-top: 50px; width: 500px;">
+                <li class="nav-item">
+                    <a class="nav-link active" id="company-details-tab" data-toggle="tab" href="#company-details" role="tab" aria-controls="company-details" aria-selected="true" style="font-weight: bold;">Company Details</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="create-company-tab" data-toggle="tab" href="#create-company" role="tab" aria-controls="create-company" aria-selected="false" style="font-weight: bold;">Create New Company</a>
+                </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="company-details" role="tabpanel" aria-labelledby="company-details-tab">
+                    <!-- Company details form -->
+                    <form id="companyDetailsForm">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="companyId" style="margin-left: 20px;">Company ID</label>
+                                <input type="text" class="form-control" id="companyId" placeholder="Enter Company ID" style="width: 300px; margin-left: 20px">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="companyLocation">Location</label>
+                                <input type="text" class="form-control" id="companyLocation" placeholder="Enter Location" style="width: 300px;">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="companyName" style="margin-left: 20px;">Company Name</label>
+                                <input type="text" class="form-control" id="companyName" placeholder="Enter Company Name" style="width: 300px; margin-left: 20px">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="adminName">Admin Name</label>
+                                <input type="text" class="form-control" id="adminName" placeholder="Enter Admin Name" style="width: 300px">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="companyEmail" style="margin-left: 20px;">Email address</label>
+                                <input type="email" class="form-control" id="companyEmail" placeholder="Enter Email" style="width: 300px; margin-left: 20px">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="adminPosition">Position</label>
+                                <input type="text" class="form-control" id="adminPosition" placeholder="Enter Admin Position" style="width: 300px">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="companyContact" style="margin-left: 20px;">Contact Info</label>
+                                <input type="text" class="form-control" id="companyContact" placeholder="Enter Contact Info" style="width: 300px; margin-left: 20px;">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="margin-left: 700px;">Update</button>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="create-company" role="tabpanel" aria-labelledby="create-company-tab" style="width: 300px">
+                    <!-- Create company form -->
+                    <form id="createCompanyForm">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="newCompanyName" style="margin-left: 20px;">Company Name</label>
+                                <input type="text" class="form-control" id="newCompanyName" placeholder="Enter Company Name" style="width: 300px; margin-left: 20px;">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="newCompanyEmail" style="margin-left: 300px;">Email</label>
+                                <input type="email" class="form-control" id="newCompanyEmail" placeholder="Enter Email" style="width: 300px; margin-left: 300px;">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="newCompanyPassword" style="margin-left: 20px;">Password</label>
+                                <input type="password" class="form-control" id="newCompanyPassword" placeholder="Password" style="width: 300px; margin-left: 20px;">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="newCompanyLocation" style="margin-left: 300px;">Location</label>
+                                <input type="text" class="form-control" id="newCompanyLocation" placeholder="Enter Location" style="width: 300px;  margin-left: 300px;">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="newAdminName" style="margin-left: 20px;">Admin Name</label>
+                                <input type="text" class="form-control" id="newAdminName" placeholder="Enter Admin Name" style="width: 300px; margin-left: 20px;">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="newAdminPosition" style="margin-left: 300px;">Position</label>
+                                <input type="text" class="form-control" id="newAdminPosition" placeholder="Enter Admin Position" style="width: 300px;  margin-left: 300px;">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success" style="margin-left: 650px;">Register</button>
+                    </form>
+                </div>
+
+    <!-- Optional JavaScript -->
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="account.js"></script>
+    <script src="accountUpdate.js"></script>
+  </body>
+</html>
