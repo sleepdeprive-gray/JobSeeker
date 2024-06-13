@@ -1,0 +1,126 @@
+body {
+   /* overflow: hidden; */
+    margin: 0;
+    padding: 0;
+}
+
+#header {
+    display: flex;
+    align-items: center;
+    height: 75px;
+    background-color: rgb(255, 255, 255);
+}
+
+#header img {
+    margin-left: 25px;
+    height: 75px;
+    width: 75px;
+}
+
+#header h1 {
+    margin-top: 9px;
+    font-family: Impact;
+}
+
+#navigation-part {
+    border-right: solid black;
+    border-width: 1px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    background-color:rgb(255, 255, 255);
+    height: 531px;
+}
+
+#navigation-part img {
+    margin-top: 10px;
+    height: 75px;
+    width: 75px;
+}
+
+#navigation-part b {
+    margin-top: 10px;
+    font-family: 'Times New Roman';
+    font-size: 135%;
+    margin-bottom: 30px;
+}
+
+a {
+    margin-top: 15px;
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    text-decoration: none;
+    color: white;
+}
+
+#navigation-part nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Franklin Gothic Medium';
+    font-size: 120%;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+#selected-nav {
+    margin-top: -20px;
+    height: 50px;
+    width: 135px;
+    padding: 0 30px;
+    border-radius: 15px;
+    background-color: rgb(133, 142, 139);
+    color: white;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#selected-nav:hover {
+    background-color: rgb(100, 101, 101);
+}
+
+#selected-nav img {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-left: -15px;
+    height: 40px;
+    width: 40px;
+}
+
+#unselected-nav {
+    height: 50px;
+    width: 135px;
+    padding: 0 30px; 
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#unselected-nav:hover {
+    color: white;
+    background-color: rgb(133, 142, 139);
+    border-radius: 15px;
+}
+
+#unselected-nav img {
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-left: -5px;
+}
+
+#page-title {
+    border-top: solid black 1px;
+    display: flex;
+    align-items: center;
+    height: 50px;
+}
+
+#page-title h3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    width: 150px;
+    margin-left: -15px;
+}
