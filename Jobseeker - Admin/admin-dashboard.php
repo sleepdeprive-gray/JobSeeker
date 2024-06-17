@@ -6,8 +6,7 @@
     <title>Jobseeker Admin</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/basic-layout.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src = "js/stats-chart.js"></script>
+    <script src = "stats-fetch.js"></script>
     <?php include 'process/include.php';?>
 </head>
 
@@ -51,24 +50,22 @@
         border: 1px solid gray;
     }
 
-    #feedback-part h5 {
+    #feedback-part h5, #history-part h5{
         margin-top: 15px;
         font-family: Verdana;
         font-size: 17px;
     }
 
-    #feedback-part table {
+    #feedback-part table, #history-part table {
         margin-top: -5px;
         font-size: 11px;
     }
 
     #email-column {
-        text-align: center;
         width: 20%;
     }
     
     #feedback-column {
-        text-align: center;
         width: 30%;
         max-width: 50%;
         white-space: nowrap;
@@ -77,7 +74,6 @@
     }
     
     #date-column {
-        text-align: center;
         width: 50%;
     }
     
@@ -87,6 +83,16 @@
         background-color: coral;
         border: 1px solid gray;
         border-radius: 15px;
+    }
+
+    #history-part tr {
+        background-color: coral;
+    }
+
+    article h2 {
+        font-size: 45px;
+        margin-bottom: 25px;
+        
     }
 
 </style>
@@ -106,7 +112,7 @@
                         Dashboard
                     </nav>
                 </a>
-                <a href="admin-user.html">
+                <a href="admin-user.php">
                     <nav id = "unselected-nav">
                         <img src = "icon/users-black-icon.png" style="height: 50px; width: 50px; margin-right: -4px; margin-left: -10px;">
                         Users
@@ -130,64 +136,85 @@
         </div>
         <section id="stats">
             <div id="stats-content" class="col-sm-3">
-                <article>
-                    <!-- This is where the visualization -->
-                    <canvas id="applicantsChart"></canvas>
-                    <h4 id="applicantsCount">0</h4>
+                <article class = "applicant-count">
+                    <h2 class = "count">Loading...</h2>
                     <h5>Applicants</h5>
                 </article>
             </div>
             <div id="stats-content" class="col-sm-3" style="margin-left: 25px;">
-                <article>
-                    <!-- This is where the visualization -->
-                    <canvas id="companiesChart"></canvas>
-                    <h4 id="companiesCount">0</h4>
+                <article class = "company-count">
+                <h2 class = "count">Loading...</h2>
                     <h5>Companies</h5>
                 </article>
             </div>
             <div id="stats-content" class="col-sm-3" style="margin-left: 25px;">
-                <article>
-                    <!-- This is where the visualization -->
-                    <canvas id="feedbacksChart"></canvas>
-                    <h4 id="feedbacksCount">0</h4>
+                <article class = "feedback-count">
+                <h2 class = "count">Loading...</h2>
                     <h5>Feedbacks</h5>
                 </article>
             </div>
-        </section>
-        <div id = "feedback-part" class = "col-sm-4">
-            <section id = "recent-feedback">
-                <h5>Recent Feedback</h5>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th id="email-column">Email</th>
-                            <th id="feedback-column">Feedback</th>
-                            <th id="date-column">Date Sent</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        if ($result->num_rows > 0) {
-                            while($row = $result->fetch_assoc()) {
-                                echo "<tr>
-                                        <td class='email-column'>{$row['sender_email']}</td>
-                                        <td class='feedback-column'>{$row['sender_feedback']}</td>
-                                        <td class='date-column'>{$row['date_sent']}</td>
-                                    </tr>";
+            </section>
+                <div id = "feedback-part" class = "col-sm-4">
+                    <section id = "recent-feedback">
+                        <h5>Recent Feedback</h5>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th id="email-column">Email</th>
+                                    <th id="feedback-column">Feedback</th>
+                                    <th id="date-column">Date Sent</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                if ($result->num_rows > 0) {
+                                    while($row = $result->fetch_assoc()) {
+                                        echo "<tr>
+                                                <td class='email-column'>{$row['sender_email']}</td>
+                                                <td class='feedback-column'>{$row['sender_feedback']}</td>
+                                                <td class='date-column'>{$row['date_sent']}</td>
+                                            </tr>";
+                                    }
+                                } else {
+                                    echo "<tr><td colspan='3'>No feedbacks found</td></tr>";
+                                }
+                                ?>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            <div id = "history-part" class = "col-sm-4">
+            <?php include 'process/fetch-history.php';?>
+                <section id="history-section">
+                    <h5>History</h5>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Admin</th>
+                                <th>Action</th>
+                                <th>User</th>
+                                <th>Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            if ($result->num_rows > 0) {
+                                while($row = $result->fetch_assoc()) {
+                                    echo "<tr>
+                                            <td>{$row['admin_name']}</td>
+                                            <td>{$row['action']}</td>
+                                            <td>{$row['user_id']}</td>
+                                            <td>{$row['time']}</td>
+                                        </tr>";
+                                }
+                            } else {
+                                echo "<tr><td colspan='4'>No history found</td></tr>";
                             }
-                        } else {
-                            echo "<tr><td colspan='3'>No feedbacks found</td></tr>";
-                        }
-                        ?>
-                    </tbody>
-                </table>
-            </section>
-        </div>
-        <div id = "history-part" class = "col-sm-4">
-            <section>
-                
-            </section>
-        </div>
+                            ?>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
     </div>
 
     <script>

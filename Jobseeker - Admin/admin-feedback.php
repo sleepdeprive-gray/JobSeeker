@@ -6,7 +6,8 @@
     <title>Jobseeker Admin</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/basic-layout.css">
-    <script src="feedback-popup.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <?php include 'process/include.php';?>
 </head>
 
@@ -22,21 +23,24 @@
     }
 
     #page-title h3 {
-        background-color: cadetblue;
+        background-color: lightgreen;
         font-size: 20px;
         font-family: 'Trebuchet MS';
-        border-radius: 15px;
+        border-top-right-radius: 15px;
+        border-top-left-radius: 15px;
     }
     
     #feedback-display {
         margin-left: 65px;
         height: 450px;
-        background-color: darkslateblue;
-        border: 1px solid gray;
-        border-radius: 15px;
+        background-color: lightgreen;
+        border-top-right-radius: 15px;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
     }
 
     table {
+        background-color: white;
         margin-top: 15px;
         width: 100%;
         table-layout: fixed;
@@ -55,7 +59,14 @@
     .feedback-column { width: 40%; }
     .status-column { width: 10%; }
     .date-column { width: 20%; }
-    .action-column { width: 10%; }
+    .action-column { width: 10%; text-align: center;}
+
+    .view-feedback-btn {
+        background-color: lightslategray;
+        color: white;
+        border: 0;
+        width: 60px;
+    }
 
     .modal {
         display: none;
@@ -107,6 +118,7 @@
     }
 
     .pagination a {
+        color: black;
         margin: 0 5px;
         text-decoration: none;
         color: #007bff;
@@ -158,7 +170,7 @@
                     Dashboard
                 </nav>
             </a>
-            <a href="admin-user.html">
+            <a href="admin-user.php">
                 <nav id="unselected-nav">
                     <img src="icon/users-black-icon.png" style="height: 50px; width: 50px; margin-right: -4px; margin-left: -10px;">
                     Users
@@ -192,36 +204,38 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    if ($feedbacksResult->num_rows > 0) {
-                        while($row = $feedbacksResult->fetch_assoc()) {
-                            $shortFeedback = (strlen($row['sender_feedback']) > 25) ? substr($row['sender_feedback'], 0, 25) . "..." : $row['sender_feedback'];
-                            echo "<tr>
-                                    <td class='email-column'>{$row['sender_email']}</td>
-                                    <td class='feedback-column'>{$shortFeedback}</td>
-                                    <td class='status-column'>{$row['status']}</td>
-                                    <td class='date-column'>{$row['date_sent']}</td>
-                                    <td class='action-column'>
-                                        <button class='view-feedback-btn' 
-                                                data-email='{$row['sender_email']}' 
-                                                data-feedback='{$row['sender_feedback']}'>
-                                            View
-                                        </button>
-                                    </td>
-                                  </tr>";
-                        }
-                    } else {
-                        echo "<tr><td colspan='5'>No feedbacks found</td></tr>";
-                    }
-                    ?>
-                </tbody>
+        <?php
+        if ($feedbacksResult->num_rows > 0) {
+            while($row = $feedbacksResult->fetch_assoc()) {
+                $shortFeedback = (strlen($row['sender_feedback']) > 25) ? substr($row['sender_feedback'], 0, 25) . "..." : $row['sender_feedback'];
+                echo "<tr>
+                        <td class='email-column'>{$row['sender_email']}</td>
+                        <td class='feedback-column'>{$shortFeedback}</td>
+                        <td class='status-column'>{$row['status']}</td>
+                        <td class='date-column'>{$row['date_sent']}</td>
+                        <td class='action-column'>
+                        <button class='view-feedback-btn'
+                                data-feedbackid='{$row['feedback_id']}' 
+                                data-email='{$row['sender_email']}' 
+                                data-feedback='".htmlspecialchars($row['sender_feedback'], ENT_QUOTES)."'
+                                data-status='{$row['status']}'>
+                            View
+                        </button>
+                        </td>
+                      </tr>";
+            }
+        } else {
+            echo "<tr><td colspan='5'>No feedbacks found</td></tr>";
+        }
+        ?>
+    </tbody>
             </table>
             <div class="pagination">
                 <?php if ($current_page == 1): ?>
                     <a href="admin-feedback.php?page=<?php echo ($current_page); ?>">«</a>
                 <?php endif; ?>
 
-                                <?php if ($current_page > 1): ?>
+                <?php if ($current_page > 1): ?>
                     <a href="admin-feedback.php?page=<?php echo ($current_page - 1); ?>">«</a>
                 <?php endif; ?>
 
@@ -252,8 +266,13 @@
                     <h4>Feedback</h4>
                 </div>
                 <div id="feedback-content"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="mark-read-btn">Mark as Read</button>
+                </div>
             </div>
         </div>
-    </div>
+        
+        <script src = "feedback-popup.js"></script>
+
 </body>
 </html>

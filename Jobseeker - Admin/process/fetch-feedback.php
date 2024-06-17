@@ -1,4 +1,5 @@
 <?php
+
 // Database configuration
 $servername = "localhost";
 $username = "root";
@@ -24,7 +25,7 @@ $sql = "SELECT feedback_id, sender_email,
                   sender_feedback) AS sender_feedback, 
                date_sent 
         FROM feedbacks 
-        WHERE status = 'received' 
+        WHERE status = 'Unread'
         ORDER BY date_sent DESC 
         LIMIT $feedback_limit";
 
