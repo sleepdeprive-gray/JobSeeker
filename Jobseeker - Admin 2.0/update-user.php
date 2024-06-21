@@ -1,5 +1,4 @@
 <?php
-
 $host = 'localhost'; // Your database host
 $db = 'jobseeker';   // Your database name
 $user = 'root';      // Your database username
@@ -27,10 +26,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['user_id']) && isset($
     $stmt->bind_param("si", $password_hash, $user_id);
 
     if ($stmt->execute()) {
-        // Redirect back to admin-user.php after successful update
-        header("Location: admin-user.php");
-        exit;
+        // Password updated successfully
+        echo "Password updated successfully";
     } else {
+        // Error updating password
         echo "Error updating password: " . $mysqli->error;
         // Handle the error appropriately, log it, etc.
     }
@@ -40,3 +39,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['user_id']) && isset($
 
 // Close the connection
 $mysqli->close();
+?>

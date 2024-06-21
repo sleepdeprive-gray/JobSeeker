@@ -19,9 +19,9 @@ $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($page - 1) * $limit;
 
 // Fetch feedbacks with pagination and sorting by status and date
-$feedbacksQuery = "SELECT feedback_id, sender_email, sender_feedback, status, date_sent 
+$feedbacksQuery = "SELECT feedback_id, sender_email, rate, sender_feedback, status, date_sent 
                    FROM feedbacks 
-                   ORDER BY status ASC, date_sent DESC 
+                   ORDER BY date_sent DESC, status ASC
                    LIMIT $limit OFFSET $offset";
 $feedbacksResult = $conn->query($feedbacksQuery);
 

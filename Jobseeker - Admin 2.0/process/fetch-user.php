@@ -13,32 +13,52 @@ if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
 }
 
-// Function to fetch all users using MySQLi
-function fetchAllUsers($mysqli) {
-    $query = "SELECT user_id, username, email, user_type FROM Users";
-    $result = $mysqli->query($query);
+$query = "SELECT user_id, username, email, user_type FROM users";
+$result = $mysqli->query($query);
 
-    // Build HTML table rows from fetched data
-    $html = '';
-    while ($user = $result->fetch_assoc()) {
-        $html .= '<tr data-type="' . htmlspecialchars($user['user_type']) . '">';
-        $html .= '<td>' . htmlspecialchars($user['user_id']) . '</td>';
-        $html .= '<td>' . htmlspecialchars($user['username']) . '</td>';
-        $html .= '<td>' . htmlspecialchars($user['email']) . '</td>';
-        $html .= '<td id = "user-type-space" >' . htmlspecialchars($user['user_type']) . '</td>';
-        $html .= '<td><input type="password" class="form-control" id="password_' . htmlspecialchars($user['user_id']) . '" placeholder="Enter new password" ></td>';
-        $html .= '<td>';
-        $html .= '<button type="button" class="btn btn-primary btn-sm btn-update" data-user-id="' . htmlspecialchars($user['user_id']) . '">Update</button>';
-        $html .= '<button type="button" id = "delete-button" class="btn btn-danger btn-sm btn-delete" data-user-id="' . htmlspecialchars($user['user_id']) . '" data-username="' . htmlspecialchars($user['username']) . '">Delete</button>';
-        $html .= '</td>';
-        $html .= '</tr>';
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        // Determine the user type and assign appropriate data-type attribute
+        switch ($row['user_type']) {
+            case 'applicant':
+                $userType = 'applicant';
+                break;
+            case 'company':
+                $userType = 'company';
+                break;
+            case 'admin':
+                $userType = 'admin';
+                break;
+            default:
+                $userType = 'unknown';
+        }
+
+        // Output each user data row with buttons
+        echo "<tr data-type='{$userType}'>";
+        echo "<td>{$row['user_id']}</td>";
+        echo "<td>{$row['username']}</td>";
+        echo "<td>{$row['email']}</td>";
+        echo "<td>{$row['user_type']}</td>";
+        echo "<td>
+                <button id = 'update-button' class='btn btn-primary btn-update' 
+                        data-user-id='{$row['user_id']}' 
+                        data-username='{$row['username']}' 
+                        data-bs-toggle='modal' 
+                        data-bs-target='#updatePasswordModal'>
+                    Update Password
+                </button>
+                <button id = 'delete-button' class='btn btn-danger btn-delete' 
+                        data-user-id='{$row['user_id']}'>
+                    Delete
+                </button>
+              </td>";
+        echo "</tr>";
     }
-
-    return $html;
+} else {
+    echo "<tr><td colspan='5'>No users found</td></tr>";
 }
-
-// Fetch all users
-echo fetchAllUsers($mysqli);
 
 // Close the connection
 $mysqli->close();
+
+?>

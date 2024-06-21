@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Title</title>
+    <title>Jobs</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,6 +15,14 @@
 
 <style>
 
+    #page-title h3 {
+        color: black;
+        margin-left: 25px;
+        margin-top: 45px;
+        font-family: 'Trebuchet MS';
+    }
+
+
 
 
 </style>
@@ -27,16 +35,17 @@
         <div class="profile">
             <img src="avatar.png" alt="Avatar">
             <div class="profile-info">
-                <div class="name">Admin Nicole</div>
-                <div class="title">HR Officer</div>
+                <?php include 'process/current-admin-login.php';?>
+                <div class="name">Admin <?php echo htmlspecialchars($admin_name); ?></div>
+                <div class="title"><?php echo htmlspecialchars($admin_position); ?></div>
             </div>
         </div>
         <div class="sidebar">
             <a class="nav-link" href="admin-dashboard.php"><i class="fa fa-home"><b style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Dashboard</b></i></a>
-            <a class="nav-link" href="admin-user.php"><i class="fa fa-clipboard"><b style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Users</b></i></a>
-            <a class="nav-link" href="admin-jobs.php"><i class="fa fa-sign-out"><b style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Jobs</b></i></a>
-            <a class="nav-link" href="admin-report.php"><i class="fa fa-sign-out"><b style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Report</b></i></a>
-            <a class="nav-link" href="admin-feedback.php"><i class="fa fa-briefcase"><b style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Feedbacks</b></i></a>
+            <a class="nav-link" href="admin-user.php"><i class="fa fa-user"><b style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Users</b></i></a>
+            <a class="nav-link" href="admin-jobs.php"><i class="fa fa-briefcase"><b style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Jobs</b></i></a>
+            <a class="nav-link" href="admin-report.php"><i class="fa fa-clipboard"><b style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Report</b></i></a>
+            <a class="nav-link" href="admin-feedback.php"><i class="fa fa-bullhorn"><b style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Feedbacks</b></i></a>
             <a class="nav-link" href="#logout"><i class="fa fa-sign-out"><b style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Logout</b></i></a>
         </div>
     </div>
@@ -57,6 +66,10 @@
             <img src="avatar.png" alt="Avatar" class="avatar"/>
             <i class='fa fa-bell' style="float: right; margin-top: 12px; margin-right: 5px;"></i>
             <input type="text" placeholder="Search" class="search">
+
+            <div id="page-title" class="col-sm-10">
+                <h3>Jobs</h3>
+            </div>
 
            <!-- 
 
@@ -82,5 +95,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
   </body>
 </html>

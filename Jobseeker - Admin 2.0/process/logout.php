@@ -1,9 +1,14 @@
 <?php
-// log-history.php
+// logout.php
 
+session_start();
 
-// Check if action, user, and adminName parameters are set
-if (isset($_POST['action']) && isset($_POST['user']) && isset($_POST['adminName'])) {
+// Log the logout action
+if (isset($_SESSION['adminName'])) {
+    $adminName = $_SESSION['adminName'];
+    $action = 'Logged Out';
+    $user = $adminName; // Assuming the user logging out is the admin themselves
+
     // Database connection parameters
     $servername = "localhost"; // Change this to your MySQL server name
     $username = "root"; // MySQL username
@@ -19,9 +24,8 @@ if (isset($_POST['action']) && isset($_POST['user']) && isset($_POST['adminName'
     }
 
     // Escape variables to prevent SQL injection
-    $action = $conn->real_escape_string($_POST['action']);
-    $user = $conn->real_escape_string($_POST['user']);
-    $adminName = $conn->real_escape_string($_POST['adminName']);
+    $action = $conn->real_escape_string($action);
+    $user = $conn->real_escape_string($user);
 
     // Get current timestamp
     $timestamp = date('Y-m-d H:i:s');
@@ -38,7 +42,15 @@ if (isset($_POST['action']) && isset($_POST['user']) && isset($_POST['adminName'
 
     // Close connection
     $conn->close();
-} else {
-    echo "Error: Missing parameters.";
 }
+
+// Unset all session variables
+$_SESSION = array();
+
+// Destroy the session
+session_destroy();
+
+// Redirect to login page
+header("Location: login.php");
+exit();
 ?>

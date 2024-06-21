@@ -5,16 +5,20 @@ document.addEventListener('DOMContentLoaded', function() {
         var password = document.getElementById('password').value;
         var userType = document.getElementById('user-type').value;
 
+        // Debugging statements
+        console.log('Adding account with:', username, email, password, userType);
+
         // Send data to server using AJAX
         var xhr = new XMLHttpRequest();
         xhr.open('POST', 'add-account.php', true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.onload = function() {
             if (xhr.status === 200) {
+                console.log('Server response:', xhr.responseText); // Debugging
                 // Check response
                 if (xhr.responseText.trim() === 'success') {
                     alert('Account added successfully');
-                    logHistory('Admin', 'Added Account', username); // Log the action with admin name
+                    logHistory('Added Account', username); // Log the action with admin name
                     // Clear form or perform other actions upon success
                     document.getElementById('username').value = '';
                     document.getElementById('email').value = '';
@@ -45,24 +49,26 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Function to log history
-    function logHistory(adminName, action, user) {
+    function logHistory(action, user) {
+        console.log('logHistory called with action:', action, 'user:', user); // Debugging
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'log-history.php', true); // Adjust URL as per your setup
+        xhr.open('POST', 'process/log-history.php', true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.onload = function() {
             if (xhr.status === 200) {
                 console.log('History logged successfully');
             } else {
-                console.error('Error logging history: Server response error');
+                console.error('Error logging history');
             }
         };
         xhr.onerror = function() {
-            console.error('Error logging history: Failed to send request to server');
+            console.error('Error: Failed to send request to server');
         };
 
-        var params = 'admin_name=' + encodeURIComponent(adminName) +
-                     '&action=' + encodeURIComponent(action) +
-                     '&user=' + encodeURIComponent(user);
+        var params = 'action=' + encodeURIComponent(action) + 
+                     '&user=' + encodeURIComponent(user) +
+                     '&adminName=' + encodeURIComponent(adminName);
+        console.log('logHistory params:', params); // Debugging
         xhr.send(params);
     }
 });

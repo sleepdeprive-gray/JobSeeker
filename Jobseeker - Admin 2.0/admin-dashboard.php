@@ -65,10 +65,10 @@
 
     #feedback-part table, #history-part table {
         margin-top: -5px;
-        font-size: 11px;
+        font-size: 9px;
     }
 
-    #email-column {
+    #email-column { 
         width: 20%;
     }
     
@@ -103,6 +103,12 @@
         
     }
 
+    #user-id-column, #user-id-name-column{
+
+        text-align: center;
+
+    }
+
 </style>
 
 <body>
@@ -113,14 +119,18 @@
         <div class="profile">
             <img src="avatar.png" alt="Avatar">
             <div class="profile-info">
-                <div class="name">Admin Nicole</div>
-                <div class="title">HR Officer</div>
+                <?php include 'process/current-admin-login.php';?>
+                <script> var adminName = "<?php echo htmlspecialchars($admin_name); ?>";</script>
+                <div class="name">Admin <?php echo htmlspecialchars($admin_name); ?></div>
+                <div class="title"><?php echo htmlspecialchars($admin_position); ?></div>
             </div>
         </div>
         <div class="sidebar">
             <a class="nav-link" href="admin-dashboard.php"><i class="fa fa-home"><b style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Dashboard</b></i></a>
-            <a class="nav-link" href="admin-user.php"><i class="fa fa-clipboard"><b style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Users</b></i></a>
-            <a class="nav-link" href="admin-feedback.php"><i class="fa fa-briefcase"><b style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Feedbacks</b></i></a>
+            <a class="nav-link" href="admin-user.php"><i class="fa fa-user"><b style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Users</b></i></a>
+            <a class="nav-link" href="admin-jobs.php"><i class="fa fa-briefcase"><b style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Jobs</b></i></a>
+            <a class="nav-link" href="admin-report.php"><i class="fa fa-clipboard"><b style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Report</b></i></a>
+            <a class="nav-link" href="admin-feedback.php"><i class="fa fa-bullhorn"><b style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Feedbacks</b></i></a>
             <a class="nav-link" href="#logout"><i class="fa fa-sign-out"><b style="margin-left: 10px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Logout</b></i></a>
         </div>
     </div>
@@ -170,7 +180,7 @@
                 <div id="stats-content">
                     <article class="feedback-count">
                         <h2 class="count">Loading...</h2>
-                        <h5>Feedbacks</h5>
+                        <h5>Jobs</h5>
                     </article>
                 </div>
             </div>
@@ -213,7 +223,7 @@
                             <tr>
                                 <th>Admin</th>
                                 <th>Action</th>
-                                <th>User</th>
+                                <th id = "user-id-column">User ID / Name</th>
                                 <th>Time</th>
                             </tr>
                         </thead>
@@ -224,7 +234,7 @@
                                     echo "<tr>
                                             <td>{$row['admin_name']}</td>
                                             <td>{$row['action']}</td>
-                                            <td>{$row['user_id']}</td>
+                                            <td id = 'user-id-name-column'>{$row['user_id']}</td>
                                             <td>{$row['time']}</td>
                                         </tr>";
                                 }
@@ -240,6 +250,7 @@
     </div>
 
     <script src = "stats-fetch.js"></script>
+    <script type="logout.js"></script>
     <?php include 'process/include.php';?>
         
 <!-- Optional JavaScript -->
